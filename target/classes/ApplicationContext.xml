@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--รถโตโยต้า-->
+    <bean id="car" class="sit.int204.lab01.beans.Car">
+        <constructor-arg name="chasisNumber" value="ZE3197-9485M"/>
+        <constructor-arg name="brand" value="Toyota"/>
+        <constructor-arg name="engine" ref="2ZZ-GE"/>
+                                   <!--ref ตาม id  ที่ลูกค้าต้องการ-->
+<!--เครื่องยนต์-->
+    </bean>
+    <bean id="1KD-FTV" class="sit.int204.lab01.beans.DieselEngine">
+        <constructor-arg value="2498" type="int"/>
+    </bean>
+    <bean id="2ZZ-GE" class="sit.int204.lab01.beans.GasolineEngine">
+        <constructor-arg value="1200" type="int"/>
+    </bean>
+
+<!--รถเบนซ์ -->
+    <bean id="carX" class="sit.int204.lab01.beans.Car">
+        <property name="chasisNumber" value="K123445ZE"/>
+        <property name="brand" value="Benz"/>
+        <property name="engine" ref="1KD-FTV"/>
+        <!--ref ตาม id  ที่ลูกค้าต้องการ-->
+
+
+    </bean>
+
+</beans>
