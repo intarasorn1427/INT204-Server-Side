@@ -1,30 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-<!--รถโตโยต้า-->
-    <bean id="car" class="sit.int204.lab01.beans.Car">
-        <constructor-arg name="chasisNumber" value="ZE3197-9485M"/>
-        <constructor-arg name="brand" value="Toyota"/>
-        <constructor-arg name="engine" ref="2ZZ-GE"/>
-                                   <!--ref ตาม id  ที่ลูกค้าต้องการ-->
-<!--เครื่องยนต์-->
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <!--รถโตโยต้า-->
+    <!--    <bean id="car" class="sit.int204.lab01.beans.Car">-->
+    <!--        <constructor-arg name="chasisNumber" value="ZE3197-9485M"/>-->
+    <!--        <constructor-arg name="brand" value="Toyota"/>-->
+    <!--        <constructor-arg name="engine" ref="2ZZ-GE"/>-->
+    <!--                                   &lt;!&ndash;ref ตาม id  ที่ลูกค้าต้องการ&ndash;&gt;-->
+    <!--&lt;!&ndash;เครื่องยนต์&ndash;&gt;-->
+    <!--    </bean>-->
+<!--        <bean id="1KD-FTV" class="sit.int204.lab01.beans.DieselEngine">-->
+<!--            <constructor-arg value="2498" type="int"/>-->
+<!--        </bean>-->
+    <!--    <bean id="2ZZ-GE" class="sit.int204.lab01.beans.GasolineEngine">-->
+    <!--        <constructor-arg value="1200" type="int"/>-->
+    <!--    </bean>-->
+
+    <!--&lt;!&ndash;รถเบนซ์ &ndash;&gt;-->
+    <!--    <bean id="carX" class="sit.int204.lab01.beans.Car">-->
+    <!--        <property name="chasisNumber" value="K123445ZE"/>-->
+    <!--        <property name="brand" value="Benz"/>-->
+    <!--        <property name="engine" ref="1KD-FTV"/>-->
+    <!--        &lt;!&ndash;ref ตาม id  ที่ลูกค้าต้องการ&ndash;&gt;-->
+    <!--    </bean>-->
+
+
+    <!--week4-->
+    <bean id="noNameEngine" class="sit.int204.lab01.beans.GasolineEngine">
+        <constructor-arg value="1111" type="int" />
     </bean>
-    <bean id="1KD-FTV" class="sit.int204.lab01.beans.DieselEngine">
-        <constructor-arg value="2498" type="int"/>
+    <bean id="chasisNumber" class="java.lang.String">
+        <constructor-arg value="12345" />
     </bean>
-    <bean id="2ZZ-GE" class="sit.int204.lab01.beans.GasolineEngine">
-        <constructor-arg value="1200" type="int"/>
+    <bean id="brand" class="java.lang.String">
+        <constructor-arg value="Hondaaaaaaa" />
     </bean>
 
-<!--รถเบนซ์ -->
-    <bean id="carX" class="sit.int204.lab01.beans.Car">
-        <property name="chasisNumber" value="K123445ZE"/>
-        <property name="brand" value="Benz"/>
-        <property name="engine" ref="1KD-FTV"/>
-        <!--ref ตาม id  ที่ลูกค้าต้องการ-->
+    <!--  autowire  By Name -->
+        <bean id="carN" class="sit.int204.lab01.beans.Car" autowire="byName">
+            <property  name="chasisNumber" value="K123445ZR"/>
+            <property name="brand" value="Benz D500" />
+        </bean>
+
+    <!--  autowire  By Type -->
+    <bean id="carT" class="sit.int204.lab01.beans.Car" autowire="byType">
+        <property  name="chasisNumber" value="T123456"/>
+        <property name="brand" value="Benz D500" />
+    </bean>
+
+    <!--  autowire  By Constructor-->
+    <bean id="carC" class="sit.int204.lab01.beans.Car" autowire="constructor" scope="prototype" />
 
 
+<!--Counter-->
+    <bean id="counterA" class="sit.int204.lab01.beans.Counter" factory-method="getInstance"/>
+    <bean id="counterB" class="sit.int204.lab01.beans.Counter" factory-method="getInstance"/>
+    <bean id="counterC" class="sit.int204.lab01.beans.Counter" factory-method="getInstance"/>
+
+<!--Rectangle & Circle-->
+    <bean id="geometricShapeFactory" class="sit.int204.lab01.beans.GeometricShapeFactory"></bean>
+    <bean id="circle" factory-bean="geometricShapeFactory" class="sit.int204.lab01.beans.Circle"></bean>
+    <bean id="rectangle" factory-bean="geometricShapeFactory" class="sit.int204.lab01.beans.Rectangle">
+        <property name="height" value="2.5"/>
+        <property name="width" value="3.2"/>
     </bean>
 
 </beans>
